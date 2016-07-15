@@ -2,6 +2,7 @@ const assign = require('object-assign')
 const PEG = require('pegjs')
 
 module.exports = function flyPEG () {
+  'use strict'
   return this.filter('peg', function plugin (data, options) {
     const expOpt = options.export || {}
     const pegOpt = options.peg
