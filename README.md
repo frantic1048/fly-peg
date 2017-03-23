@@ -37,14 +37,9 @@ Async/Await flavored:
 export async function pasa () {
   await this
     .source('src/myParser.pegjs')
-    .peg({
-      peg: { // PEG.js options
+    .peg({ // PEG.js options
         optimize: 'speed'
-      },
-      export: { // export options
-        format: 'es'
-      }
-    })
+      })
     .target('dist')
 }
 ```
@@ -55,14 +50,9 @@ Generator function flavored:
 exports.pasa = function* () {
   yield this
     .source('src/myParser.pegjs')
-    .peg({
-      peg: { // PEG.js options
+    .peg({ // PEG.js options
         optimize: 'speed'
-      },
-      export: { // export options
-        format: 'es'
-      }
-    })
+      })
     .target('dist')
 }
 ```

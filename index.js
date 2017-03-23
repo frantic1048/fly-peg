@@ -1,32 +1,11 @@
-const assign = require('object-assign')
+'use strict'
 const PEG = require('pegjs')
 
-module.exports = function flyPEG () {
-  'use strict'
-  return this.filter('peg', function plugin (data, options) {
-    const expOpt = options.export || {}
-    const pegOpt = options.peg
-    const parser = PEG.buildParser(
-      data.toString(),
-      assign({output: 'source'}, pegOpt)
-    )
-
-    let result
-    switch (expOpt.format) {
-      case 'es':
-        result = 'export default ' + parser
-        break
-      case 'iife':
-        result = 'var ' + expOpt.moduleName + '=' + parser
-        break
-      case 'cjs':
-      default:
-        result = 'module.exports = ' + parser + ';'
-    }
-
-    return {
-      code: result,
-      ext: '.js'
-    }
+module.exports = function flyPEG (fly) {
+  fly.plugin('peg', {every: true}, function * (file, opts) {
+    const pegOpt = Object.assign({output: 'source'}, opts)
+    const ext = /\..\w+$/
+    file.base = file.base.replace(ext, '.js')
+    file.data = PEG.generate(file.data.toString(), pegOpt)
   })
 }
