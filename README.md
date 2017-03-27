@@ -57,32 +57,9 @@ exports.pasa = function* () {
 }
 ```
 
-fly-peg takes an *optional* option object to work.
-
-If no option passed, fly-peg will build your .pegjs parser as a CommonJS module. So you can easily `require` your parser into a larger application.
-
-The options object contains follow keys:
-
-**peg**
-
-options passed to PEG.js.
-
 See [PEG.js JavaScript API][PEG-options] for *PEG.js options* .
 
 [PEG-options]: http://pegjs.org/documentation#generating-a-parser-javascript-api
-
-**export**
-
-fly-peg output options, contains follow keys:
-
-`format` : output format. it could be:
-
-  - `cjs` (**default**): CommonJS Module.
-  - `es` : ES6 Module.
-  - `iife` : an IIFE named with `moduleName`.
-
-`moduleName` (needed when `format=iife`): the name of IIFE variable.
-
 
 ## License
 
